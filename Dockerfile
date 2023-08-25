@@ -1,18 +1,27 @@
-FROM golang:1.20
+# 构建阶段
+FROM golang:1.20 AS builder
 
 ARG VERSION
 
 RUN apt update && apt install -y \
     git git-lfs make curl build-essential unzip wget ocl-icd-opencl-dev ocl-icd-libopencl1 \
-    && git-lfs install \
-    && git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh /container/go-spacemesh \
-    && cd /container/go-spacemesh \
+    && git-lfs install
+
+WORKDIR /container/go-spacemesh
+
+RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh . \
     && git checkout $VERSION \
     && make get-libs && make install && make build \
-    && cd /container/go-spacemesh/build \
-    && chmod +x go-spacemesh
+    && chmod +x build/go-spacemesh
 
-WORKDIR /container/go-spacemesh/build
+# 运行阶段
+FROM debian:bookworm-slim
+
+COPY --from=builder /container/go-spacemesh/build /app/go-spacemesh
+
+RUN apt update && apt install -y ocl-icd-libopencl1 && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app/go-spacemesh
 
 COPY config.mainnet.json .
 
