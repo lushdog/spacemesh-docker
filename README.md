@@ -13,4 +13,5 @@ docker compose up -d --build
 ### 不重新构建镜像重新构建容器
 
 docker compose down
+
 docker compose up -d
