@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        VERSION: 'v1.1.1'
+        VERSION: 'v1.1.2'
 
     # ports:
     #   - '7513:7513'
