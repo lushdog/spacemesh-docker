@@ -15,3 +15,12 @@ docker compose up -d --build
 docker compose down
 
 docker compose up -d
+
+### smeshing-opts-proving-threads可以根据实际情况修改，看数据大小和本身cpu。需要保证在12小时内验证一遍。
+```
+"smeshing-proving-opts": {
+  "smeshing-opts-proving-nonces": 288,
+  "smeshing-opts-proving-threads": 6
+}
+```
+
