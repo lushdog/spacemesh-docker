@@ -7,7 +7,7 @@ RUN apt update && apt install -y \
     git git-lfs make curl jq build-essential unzip wget ocl-icd-opencl-dev ocl-icd-libopencl1 \
     && git-lfs install
 
-VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name")
+RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name")
 
 WORKDIR /container/go-spacemesh
 
