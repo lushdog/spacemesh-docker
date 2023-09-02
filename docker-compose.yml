@@ -3,8 +3,8 @@ services:
   spacemesh:
     build:
       context: .
-      args:
-        VERSION: 'v1.1.3'
+      # args:
+      #   VERSION: 'v1.1.3'
 
     # ports:
     #   - '7513:7513'
