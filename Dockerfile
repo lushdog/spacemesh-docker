@@ -9,10 +9,10 @@ RUN apt update && apt install -y \
 
 WORKDIR /container/go-spacemesh
 
-RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name") && echo $VERSION > ./version.txt
+RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name") && echo $VERSION > /version.txt
 
 RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh . \
-    && /bin/bash -c "git checkout $(cat ./version.txt)" \
+    && /bin/bash -c "git checkout $(cat /version.txt)" \
     && make get-libs && make install && make build \
     && chmod +x build/go-spacemesh
 
@@ -20,6 +20,9 @@ RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh .
 FROM debian:bookworm-slim
 
 COPY --from=builder /container/go-spacemesh/build /app/go-spacemesh
+
+COPY --from=builder /version.txt /app/go-spacemesh
+
 
 RUN apt update && apt install -y ocl-icd-libopencl1 && rm -rf /var/lib/apt/lists/*
 
