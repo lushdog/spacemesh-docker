@@ -17,7 +17,7 @@ RUN git clone --progress --verbose https://github.com/spacemeshos/go-spacemesh .
     && chmod +x build/go-spacemesh
 
 # 运行阶段
-FROM debian:bookworm-slim
+FROM ubuntu:22.04
 
 COPY --from=builder /container/go-spacemesh/build /app/go-spacemesh
 
