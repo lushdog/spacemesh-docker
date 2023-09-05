@@ -8,7 +8,7 @@ docker compose up -d
 
 ### 更新: 重新构建镜像, 自动获取最新版本重新构建
 
-docker compose up -d --build --no-cache
+docker compose up -d --build
 
 ### 不重新构建镜像，只重新构建容器
 
