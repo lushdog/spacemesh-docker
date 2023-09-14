@@ -6,14 +6,16 @@ spacemesh docker
 
 docker compose up -d
 
+或者使用B, C方法
+
 ### 更新: 重新构建镜像, 自动获取最新版本重新构建
 
-#### A: 下载代码编译，需要时间较长
+#### 方法A: 下载代码编译，需要时间较长
 docker build . --tag spacemesh --no-cache
 
 docker compose up -d
 
-#### B: 下载官方编译的文件
+#### 方法B: 下载官方编译的文件
 x86
 docker build . -f ./Dockerfile.release --tag spacemesh --no-cache
 
@@ -22,7 +24,7 @@ docker build . -f ./Dockerfile.release --tag spacemesh --build-arg ARM=yes --no-
 
 docker compose up -d
 
-#### C: 使用本地下载的官方编译的文件, arm版本需要把名字改为Linux.zip
+#### 方法C: 使用本地下载的官方编译的文件, arm版本需要把名字改为Linux.zip
 docker build . -f ./Dockerfile.copy --tag spacemesh --no-cache
 
 docker compose up -d
