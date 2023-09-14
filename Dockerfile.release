@@ -1,0 +1,28 @@
+FROM ubuntu:22.04
+
+ARG ARM=no
+
+RUN apt update && apt install -y ocl-icd-libopencl1 curl jq unzip ca-certificates && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app/go-spacemesh
+
+RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name") \
+    && echo $VERSION > /version.txt \
+    && if [ "$ARM" = "yes" ]; then \
+        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/Linux_ARM64.zip; \
+    else \
+        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/Linux.zip; \
+    fi \
+    && unzip Linux.zip \
+    &&  if [ "$ARM" = "yes" ]; then \
+        mv Linux_ARM64/* .; \
+    else \
+        mv Linux/* .; \
+    fi \
+    && rm Linux.zip
+
+COPY config.mainnet.json .
+
+EXPOSE 7513
+
+CMD ./go-spacemesh --config config.mainnet.json --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-datadir ./post_data --data-folder ./node_data

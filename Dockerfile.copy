@@ -1,0 +1,24 @@
+
+FROM ubuntu:22.04
+
+ARG ARM=no
+
+RUN apt update && apt install -y ocl-icd-libopencl1 unzip ca-certificates && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app/go-spacemesh
+
+COPY Linux.zip .
+
+RUN unzip Linux.zip \
+    &&  if [ -d "Linux_ARM64"  ]; then \
+        mv Linux_ARM64/* .; \
+    else \
+        mv Linux/* .; \
+    fi \
+    && rm Linux.zip
+
+COPY config.mainnet.json .
+
+EXPOSE 7513
+
+CMD ./go-spacemesh --config config.mainnet.json --smeshing-opts-maxfilesize $FILE_SIZE --smeshing-opts-numunits $NUMUNITS --smeshing-start --smeshing-coinbase $SMESHING_COINBASE_ADDRESS --smeshing-opts-datadir ./post_data --data-folder ./node_data
