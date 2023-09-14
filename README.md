@@ -28,7 +28,8 @@ docker build . -f ./Dockerfile.release --tag spacemesh --build-arg ARM=yes --no-
 
 docker compose up -d
 
-#### 方法C: 使用本地下载的官方编译的文件, 下载文件到当前目录，https://github.com/spacemeshos/go-spacemesh/releases/tag/v1.1.4，arm版本需要把名字改为Linux.zip
+#### 方法C: 使用本地下载的官方编译的文件, 下载文件到当前目录，https://github.com/spacemeshos/go-spacemesh/releases/tag/v1.1.4 
+arm版本需要把名字改为Linux.zip
 
 docker build . -f ./Dockerfile.copy --tag spacemesh --no-cache
 
