@@ -24,7 +24,7 @@ COPY --from=builder /container/go-spacemesh/build /app/go-spacemesh
 COPY --from=builder /version.txt /app/go-spacemesh
 
 
-RUN apt update && apt install -y ocl-icd-libopencl1 && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y ocl-icd-libopencl1 ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/go-spacemesh
 
