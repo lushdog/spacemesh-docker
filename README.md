@@ -57,8 +57,12 @@ docker compose up -d
 
 ### 4.停止运行
 
-docker compose down
+`docker compose down`
 
-### 4.启动
+### 5.启动
 
-docker compose up -d
+`docker compose up -d`
+
+### 6.使用grpcurl命令查看其他接口，例如查看最新atx, 即postcli -commitmentAtxId的值
+
+`docker compose exec -it spacemesh grpcurl -plaintext -d '' 0.0.0.0:9092 spacemesh.v1.ActivationService.Highest | jq -r '.atx.id.id' | base64 -d | xxd -p -c 64`
