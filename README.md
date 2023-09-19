@@ -8,7 +8,7 @@ docker compose up -d
 
 或者使用B, C方法
 
-### 更新: 重新构建镜像, 自动获取最新版本重新构建
+### 1. 更新: 重新构建镜像, 自动获取最新版本重新构建
 
 #### 方法A: 下载代码编译，需要时间较长
 docker build . --tag spacemesh --no-cache
@@ -38,13 +38,7 @@ docker build . -f ./Dockerfile.copy --tag spacemesh --no-cache
 
 docker compose up -d
 
-### 不重新构建镜像，只重新构建容器
-
-docker compose down
-
-docker compose up -d
-
-### smeshing-opts-proving-threads可以根据实际情况修改，看数据大小和本身cpu。需要保证在12小时内验证一遍。
+#### smeshing-opts-proving-threads可以根据实际情况修改，看数据大小和本身cpu。需要保证在12小时内验证一遍。
 ```
 "smeshing-proving-opts": {
   "smeshing-opts-proving-nonces": 288,
@@ -52,3 +46,19 @@ docker compose up -d
 }
 ```
 
+### 2.使用grpcurl查看rpc接口的状态, 主要是查自己哪些layer会收到奖励，执行内置check.sh
+
+`docker compose exec -it spacemesh /app/go-spacemesh/check.sh`
+
+### 3.查看版本
+
+`docker compose exec spacemesh /app/go-spacemesh/go-spacemesh version`
+
+
+### 4.停止运行
+
+docker compose down
+
+### 4.启动
+
+docker compose up -d

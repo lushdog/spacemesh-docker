@@ -21,6 +21,13 @@ RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/rel
     fi \
     && rm Linux.zip
 
+ADD https://github.com/fullstorydev/grpcurl/releases/download/v1.8.7/grpcurl_1.8.7_linux_x86_64.tar.gz /bin/
+
+RUN tar -zxvf /bin/grpcurl_1.8.7_linux_x86_64.tar.gz -C /bin/ \
+    && rm /bin/grpcurl_1.8.7_linux_x86_64.tar.gz  \
+    && echo "#! /bin/bash \n grpcurl -plaintext -d '' 0.0.0.0:9093 spacemesh.v1.AdminService.EventsStream" >> check.sh \
+    && chmod +x check.sh 
+
 COPY config.mainnet.json .
 
 EXPOSE 7513
