@@ -48,11 +48,11 @@ docker compose up -d
 
 ### 2.使用grpcurl查看rpc接口的状态, 主要是查自己哪些layer会收到奖励，执行内置check.sh
 
-`docker compose exec -it spacemesh /app/go-spacemesh/check.sh`
+`docker compose exec -it spacemesh ./check.sh`
 
 ### 3.查看版本
 
-`docker compose exec spacemesh /app/go-spacemesh/go-spacemesh version`
+`docker compose exec spacemesh ./go-spacemesh version`
 
 
 ### 4.停止运行
