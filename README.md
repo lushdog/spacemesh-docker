@@ -66,3 +66,12 @@ docker compose up -d
 ### 6.使用grpcurl命令查看其他接口，例如查看最新atx, 即postcli -commitmentAtxId的值
 
 `docker compose exec -it spacemesh grpcurl -plaintext -d '' 0.0.0.0:9092 spacemesh.v1.ActivationService.Highest | jq -r '.atx.id.id' | base64 -d | xxd -p -c 64`
+
+### 7.更新本地的Dockerfile
+
+`curl -o Dockerfile https://raw.githubusercontent.com/lushdog/spacemesh-docker/main/Dockerfile`
+
+`curl -o Dockerfile.release https://raw.githubusercontent.com/lushdog/spacemesh-docker/main/Dockerfile.release`
+
+`curl -o Dockerfile.copy https://raw.githubusercontent.com/lushdog/spacemesh-docker/main/Dockerfile.copy`
+
