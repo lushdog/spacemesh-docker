@@ -78,5 +78,7 @@ docker compose up -d
 ### 8.设置grafana
 
 a.打开grafana webui, 端口3000 默认密码admin
+
 b.点connections, 找到prometheus, 点data sources， Prometheus server URL 填入 http://prometheus:9090, 然后Save
+
 c.点dashboards，点new选import。输入dashboard.json的内容，点load
