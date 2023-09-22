@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s  # How often Prometheus should scrape targets
+  evaluation_interval: 15s  # How often Prometheus should evaluate alert rules
+
+scrape_configs:
+  - job_name: 'spacemesh'
+    static_configs:
+      - targets: ['spacemesh:1010']  # Use the service name from Docker Compose as the hostname

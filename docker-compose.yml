@@ -4,18 +4,46 @@ services:
     image: spacemesh
     build:
       context: .
-      # args:
-      #   VERSION: 'v1.1.3'
-
-    # ports:
-    #   - '7513:7513'
+    networks:
+      - sm_network
     privileged: true
     volumes:
       - ./node_data:/app/go-spacemesh/node_data
-      - ./data:/app/go-spacemesh/post_data
+      - /root/postdatahardlink:/app/go-spacemesh/post_data
     environment:
       - SMESHING_COINBASE_ADDRESS=${SMESHING_COINBASE_ADDRESS:?please make sure to set your SMESHING_COINBASE_ADDRESS environment variable in the .env file}
       - FILE_SIZE=${FILE_SIZE:?please make sure to set your FILE_SIZE environment variable in the .env file}
       - NUMUNITS=${NUMUNITS:?please make sure to set your NUMUNITS environment variable in the .env file}
     restart: unless-stopped
-    network_mode: bridge
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus-config.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - sm_network
+    ports:
+      - '9090:9090'
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      - spacemesh
+      
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    depends_on:
+      - prometheus
+    networks:
+      - sm_network
+
+networks:
+  sm_network:
+
+volumes:
+  grafana-storage:
