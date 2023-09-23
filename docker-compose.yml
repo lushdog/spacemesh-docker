@@ -9,7 +9,7 @@ services:
     privileged: true
     volumes:
       - ./node_data:/app/go-spacemesh/node_data
-      - ./data:/app/go-spacemesh/post_data
+      - ${POSTDATA_DIR:./data}:/app/go-spacemesh/post_data
     environment:
       - SMESHING_COINBASE_ADDRESS=${SMESHING_COINBASE_ADDRESS:?please make sure to set your SMESHING_COINBASE_ADDRESS environment variable in the .env file}
       - FILE_SIZE=${FILE_SIZE:?please make sure to set your FILE_SIZE environment variable in the .env file}
