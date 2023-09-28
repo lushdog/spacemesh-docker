@@ -16,34 +16,34 @@ services:
       - NUMUNITS=${NUMUNITS:?please make sure to set your NUMUNITS environment variable in the .env file}
     restart: unless-stopped
 
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus-config.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - sm_network
-    ports:
-      - '9090:9090'
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    depends_on:
-      - spacemesh
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   volumes:
+  #     - ./prometheus-config.yml:/etc/prometheus/prometheus.yml
+  #   networks:
+  #     - sm_network
+  #   ports:
+  #     - '9090:9090'
+  #   command:
+  #     - '--config.file=/etc/prometheus/prometheus.yml'
+  #   depends_on:
+  #     - spacemesh
       
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - '3000:3000'
-    volumes:
-      - grafana-storage:/var/lib/grafana
-    environment:
-      GF_SECURITY_ADMIN_PASSWORD: admin
-    depends_on:
-      - prometheus
-    networks:
-      - sm_network
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   ports:
+  #     - '3000:3000'
+  #   volumes:
+  #     - grafana-storage:/var/lib/grafana
+  #   environment:
+  #     GF_SECURITY_ADMIN_PASSWORD: admin
+  #   depends_on:
+  #     - prometheus
+  #   networks:
+  #     - sm_network
 
 networks:
   sm_network:
 
-volumes:
-  grafana-storage:
+# volumes:
+#   grafana-storage:
