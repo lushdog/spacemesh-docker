@@ -103,7 +103,7 @@
     },
     "smeshing-proving-opts": {
       "smeshing-opts-proving-nonces": 288,
-      "smeshing-opts-proving-threads": 6
+      "smeshing-opts-proving-threads": 7
     }
   }
 }
