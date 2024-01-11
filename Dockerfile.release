@@ -9,13 +9,13 @@ WORKDIR /app/go-spacemesh
 RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/releases/latest" | jq -r ".tag_name") \
     && echo $VERSION > /version.txt \
     && if [ "$ARM" = "yes" ]; then \
-        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/Linux_ARM64.zip; \
+        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/go-spacemesh-$VERSION-linux-arm64.zip; \
     else \
         curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/go-spacemesh-$VERSION-linux-amd64.zip; \
     fi \
     && unzip Linux.zip \
     &&  if [ "$ARM" = "yes" ]; then \
-        mv Linux_ARM64/* .; \
+        mv go-spacemesh-$VERSION-linux-arm64/* .; \
     else \
         mv go-spacemesh-$VERSION-linux-amd64/* .; \
     fi \
