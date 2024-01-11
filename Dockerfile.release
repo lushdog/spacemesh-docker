@@ -11,13 +11,13 @@ RUN VERSION=$(curl -s "https://api.github.com/repos/spacemeshos/go-spacemesh/rel
     && if [ "$ARM" = "yes" ]; then \
         curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/Linux_ARM64.zip; \
     else \
-        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/Linux.zip; \
+        curl -o Linux.zip https://storage.googleapis.com/go-spacemesh-release-builds/$VERSION/go-spacemesh-$VERSION-linux-amd64.zip; \
     fi \
     && unzip Linux.zip \
     &&  if [ "$ARM" = "yes" ]; then \
         mv Linux_ARM64/* .; \
     else \
-        mv Linux/* .; \
+        mv go-spacemesh-$VERSION-linux-amd64/* .; \
     fi \
     && rm Linux.zip
 
