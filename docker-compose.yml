@@ -23,6 +23,8 @@ services:
   #   image: spacemesh-service
   #   networks:
   #     - sm_network
+  #   depends_on:
+  #     - spacemesh
   #   privileged: true
   #   volumes:
   #     # 第一个service的数据目录
@@ -36,6 +38,8 @@ services:
   #   image: spacemesh-service
   #   networks:
   #     - sm_network
+  #   depends_on:
+  #     - spacemesh
   #   privileged: true
   #   volumes:
   #     # 第2个service的数据目录
