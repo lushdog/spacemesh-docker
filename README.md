@@ -82,3 +82,12 @@ a.打开grafana webui, 端口3000 默认密码admin
 b.点connections, 找到prometheus, 点data sources， Prometheus server URL 填入 http://prometheus:9090, 然后Save
 
 c.点dashboards，点new选import。输入dashboard.json的内容，点load
+
+
+### 9.设置service (多个service连接同一个node) new new new
+
+`docker build . -f ./Dockerfile.service --tag spacemesh-service --no-cache`
+
+将 docker-compose.yml 里的 service 注释去掉。有几个数据集复制几个，并且修改volumes。
+
+按照步骤5启动之后就会启动一个node和多个serive.
