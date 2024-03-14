@@ -86,6 +86,10 @@ c.点dashboards，点new选import。输入dashboard.json的内容，点load
 
 ### 9.设置service (多个service连接同一个node) new new new
 
+复制identity.key
+
+将数据集里的identity.key复制到node的data/identities文件夹，重命名为xxx.key(xxx随意改)
+
 `docker build . -f ./Dockerfile.service --tag spacemesh-service --no-cache`
 
 将 docker-compose.yml 里的 service 注释去掉。有几个数据集复制几个，并且修改volumes。
