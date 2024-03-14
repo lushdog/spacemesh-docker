@@ -17,31 +17,31 @@ services:
     restart: unless-stopped
 
   # 有几个添加几个
-  service1:
-    image: spacemesh-service
-    networks:
-      - sm_network
-    privileged: true
-    volumes:
-      # 第一个service的数据目录
-      - /root/postdata1:/app/go-spacemesh/post_data
-    environment:
-      - THREADS=8
-      - NONCES=288
-    restart: unless-stopped
+  # service1:
+  #   image: spacemesh-service
+  #   networks:
+  #     - sm_network
+  #   privileged: true
+  #   volumes:
+  #     # 第一个service的数据目录
+  #     - /root/postdata1:/app/go-spacemesh/post_data
+  #   environment:
+  #     - THREADS=8
+  #     - NONCES=288
+  #   restart: unless-stopped
 
-  service2:
-    image: spacemesh-service
-    networks:
-      - sm_network
-    privileged: true
-    volumes:
-      # 第2个service的数据目录
-      - /root/postdata2:/app/go-spacemesh/post_data
-    environment:
-      - THREADS=8
-      - NONCES=288
-    restart: unless-stopped
+  # service2:
+  #   image: spacemesh-service
+  #   networks:
+  #     - sm_network
+  #   privileged: true
+  #   volumes:
+  #     # 第2个service的数据目录
+  #     - /root/postdata2:/app/go-spacemesh/post_data
+  #   environment:
+  #     - THREADS=8
+  #     - NONCES=288
+  #   restart: unless-stopped
   
 
 networks:
