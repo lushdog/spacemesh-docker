@@ -6,6 +6,8 @@ services:
       context: .
     networks:
       - sm_network
+    ports:
+      - "80:80"
     privileged: true
     volumes:
       - ./node_data:/app/go-spacemesh/node_data
