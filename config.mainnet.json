@@ -66,8 +66,7 @@
   },
   "api": {
     "grpc-public-listener": "0.0.0.0:9092",
-    "grpc-private-listener": "127.0.0.1:9093",
-    "grpc-json-listener": "0.0.0.0:9094"
+    "grpc-private-listener": "127.0.0.1:9093"
   },
   "p2p": {
     "disable-reuseport": false,
