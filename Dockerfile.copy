@@ -13,7 +13,7 @@ RUN unzip Linux.zip \
     &&  if [ -d "Linux_ARM64"  ]; then \
         mv Linux_ARM64/* .; \
     else \
-        mv Linux/* .; \
+        mv go-spacemesh*/* .; \
     fi \
     && rm Linux.zip
 
